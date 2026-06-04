@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🎀 Aniversário da Sofia – 1 Aninho</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Great+Vibes&display=swap');
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+:root {
+  --bolo-blue:   #1e3a8a;
+  --bolo-blue2:  #2563eb;
+  --bolo-pink:   #f472b6;
+  --bolo-purple: #8b5cf6;
+  --bolo-orange: #f59e0b;
+  --bolo-yellow: #fde047;
+  --bolo-green:  #34d399;
+  --bolo-red:    #f87171;
+  --bolo-sky:    #38bdf8;
+  --white:       #ffffff;
+  --radius:      16px;
+}
+
+body {
+  font-family:'Nunito', sans-serif;
+  overflow-x:hidden;
+  background: var(--bolo-blue);
+}
+
+
+
+/* ══════════════════════════════════════
+   ANIMATED BACKGROUND
+══════════════════════════════════════ */
+.bg-wrap {
+  position:fixed; inset:0; z-index:0;
+  background: radial-gradient(ellipse at 20% 20%, #C4D0E3 0%, #B7C4DA 60%);
+  overflow:hidden;
+}
+
+/* Stars */
+.star {
+  position:absolute; border-radius:50%;
+  background:var(--bolo-yellow);
+  animation:twinkle ease-in-out infinite;
+  box-shadow: 0 0 4px 1px rgba(253,224,71,.6);
+}
+@keyframes twinkle {
+  0%,100% { opacity:.9; transform:scale(1); }
+  50%      { opacity:.2; transform:scale(.5); }
+}
+
+/* Music notes floating */
+.note {
+  position:absolute;
+  font-size:1.2rem;
+  animation:floatNote linear infinite;
+  opacity:0;
+}
+@keyframes floatNote {
+  0%   { transform:translateY(0) rotate(-10deg);  opacity:0; }
+  15%  { opacity:.8; }
+  85%  { opacity:.5; }
+  100% { transform:translateY(-100vh) rotate(20deg); opacity:0; }
+}
+
+/* Clouds */
+.cloud {
+  position:absolute;
+  background:rgba(255,255,255,.06);
+  border-radius:999px;
+  animation:driftCloud linear infinite;
+}
+.cloud::before, .cloud::after {
+  content:''; position:absolute;
+  background:inherit; border-radius:50%;
+}
+@keyframes driftCloud {
+  0%   { transform:translateX(-120px); opacity:0; }
+  10%  { opacity:1; }
+  90%  { opacity:.7; }
+  100% { transform:translateX(110vw);  opacity:0; }
+}
+
+/* Confetti */
+.conf {
+  position:absolute;
+  width:8px; height:8px;
+  border-radius:2px;
+  animation:confettiFall linear infinite;
+  opacity:0;
+}
+@keyframes confettiFall {
+  0%   { transform:translateY(-30px) rotate(0deg);   opacity:.9; }
+  100% { transform:translateY(110vh) rotate(720deg); opacity:0; }
+}
+
+/* ══════════════════════════════════════
+   INVITE SECTION
+══════════════════════════════════════ */
+.invite {
+  position:relative; z-index:1;
+  padding:36px 20px 0;
+  text-align:center;
+}
+
+/* Bolofofos image */
+.bolo-img-wrap {
+  margin:0 auto 16px;
+  width:min(280px,75vw);
+  filter:drop-shadow(0 8px 24px rgba(0,0,0,.4));
+  animation:bounceIn .8s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes bounceIn {
+  0%   { opacity:0; transform:scale(.7) translateY(20px); }
+  70%  { transform:scale(1.05) translateY(-4px); }
+  100% { opacity:1; transform:scale(1) translateY(0); }
+}
+.bolo-img-wrap img { width:100%; display:block; }
+
+/* Eyebrow */
+.eyebrow {
+  font-size:.72rem; letter-spacing:.22em;
+  text-transform:uppercase; color:rgba(255,255,255,.65);
+  font-weight:700; margin-bottom:8px;
+}
+
+/* Title */
+.invite-title {
+  font-family:'Pacifico', cursive;
+  font-size:clamp(1.9rem, 7.5vw, 3rem);
+  line-height:1.15;
+  margin-bottom:6px;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,.8),
+    0 4px 12px rgba(0,0,0,.2);
+}
+.invite-title .word-aniversario {
+  color: var(--bolo-yellow);
+}
+
+.invite-title .word-da {
+  color: #ffffff;
+}
+
+.invite-title .word-sofia {
+  color: #ec4899;
+  text-shadow:
+    0 0 8px rgba(236,72,153,.8),
+    0 0 16px rgba(236,72,153,.6),
+    0 0 24px rgba(236,72,153,.4);
+}
+
+/* Age badge */
+.age-pill {
+  display:inline-flex; align-items:center; gap:6px;
+  background:linear-gradient(135deg, var(--bolo-orange), var(--bolo-yellow));
+  color:var(--bolo-blue); font-weight:900; font-size:.88rem;
+  padding:6px 20px; border-radius:999px;
+  box-shadow:0 4px 16px rgba(245,158,11,.5);
+  margin:10px 0 22px; letter-spacing:.03em;
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+@keyframes pulse-badge {
+  0%,100% { box-shadow:0 4px 16px rgba(245,158,11,.5); }
+  50%     { box-shadow:0 4px 28px rgba(245,158,11,.8); }
+}
+
+/* Photo */
+.photo-wrap {
+  position:relative;
+  margin:0 auto;
+  width:min(250px,72vw);
+}
+.photo-btn {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.22);
+  color:#ffffff;
+  font-size:1.2rem;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  transition:transform .2s,background .2s,box-shadow .2s;
+  backdrop-filter:blur(14px);
+  z-index:2;
+}
+.photo-btn.left { left:-90px; }
+.photo-btn.right { right:-90px; }
+.photo-btn:hover {
+  transform:translateY(-50%) scale(1.03);
+  background:rgba(255,255,255,.32);
+  box-shadow:0 14px 32px rgba(0,0,0,.24);
+}
+.photo-btn:active {
+  transform:translateY(-50%) scale(.98);
+}
+.photo-frame {
+  position:relative;
+  width:100%;
+  aspect-ratio:3/4;
+  border-radius:20px; overflow:hidden;
+  border:5px solid var(--white);
+  box-shadow:
+    0 0 0 3px var(--bolo-pink),
+    0 0 0 6px rgba(255,255,255,.2),
+    0 16px 48px rgba(0,0,0,.5);
+  background:#1e3a8a;
+  animation:slideUp .7s .2s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.photo-frame img {
+  position:absolute;
+  inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center top;
+  display:none;
+}
+.photo-frame img.active { display:block; }
+.photo-description {
+  font-size:.85rem;
+  color:rgba(255,255,255,.9);
+  font-weight:600;
+  margin-top:12px;
+  text-align:center;
+  min-height:20px;
+}
+.slider{
+  display:flex;
+  width:1000%;
+  height:100%;
+  animation:slideFotos 40s infinite;
+}
+
+.slider img{
+  width:10%;
+  height:100%;
+  object-fit:cover;
+  flex-shrink:0;
+}
+
+@keyframes slideFotos{
+  0%{transform:translateX(0);}
+  10%{transform:translateX(0);}
+
+  12%{transform:translateX(-10%);}
+  20%{transform:translateX(-10%);}
+
+  22%{transform:translateX(-20%);}
+  30%{transform:translateX(-20%);}
+
+  32%{transform:translateX(-30%);}
+  40%{transform:translateX(-30%);}
+
+  42%{transform:translateX(-40%);}
+  50%{transform:translateX(-40%);}
+
+  52%{transform:translateX(-50%);}
+  60%{transform:translateX(-50%);}
+
+  62%{transform:translateX(-60%);}
+  70%{transform:translateX(-60%);}
+
+  72%{transform:translateX(-70%);}
+  80%{transform:translateX(-70%);}
+
+  82%{transform:translateX(-80%);}
+  90%{transform:translateX(-80%);}
+
+  92%{transform:translateX(-90%);}
+  100%{transform:translateX(-90%);}
+}
+
+/* Info cards */
+.info-row {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:8px;
+  margin:20px auto 0;
+  max-width:460px;
+  padding-bottom:30px;
+}
+.info-card {
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(8px);
+  border:1.5px solid rgba(255,255,255,.35);
+  border-radius:14px; padding:10px 14px;
+  box-shadow:0 4px 16px rgba(0,0,0,.15);
+}
+.info-card.full-width {
+  grid-column: 1 / -1;
+}
+.ic-label {
+  font-size:.6rem; letter-spacing:.16em;
+  text-transform:uppercase; color:rgba(255,255,255,.75);
+  font-weight:700; margin-bottom:3px;
+}
+.ic-value {
+  font-size:.82rem; font-weight:800;
+  color:#ffffff; line-height:1.35;
+  text-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+.invite-card{
+  max-width:700px;
+  margin:20px auto 30px auto;
+
+  background:linear-gradient(
+    170deg,
+    rgba(139,92,246,.80) 0%,
+    rgba(196,80,180,.75) 35%,
+    rgba(236,72,153,.80) 65%,
+    rgba(251,113,133,.70) 100%
+  );
+
+  backdrop-filter:blur(12px);
+
+  border-radius:40px;
+
+  overflow:hidden;
+
+  padding:25px 20px 30px;
+
+  border:1px solid rgba(255,255,255,.4);
+
+  box-shadow:
+    0 10px 35px rgba(236,72,153,.3),
+    0 0 20px rgba(255,255,255,.2),
+    0 0 60px rgba(236,72,153,.15);
+}
+/* ══════════════════════════════════════
+   WAVE DIVIDER
+══════════════════════════════════════ */
+.wave-divider {
+  position:relative; z-index:1;
+  margin-top:-2px; line-height:0;
+  background:var(--bolo-blue);
+}
+.wave-divider svg { display:block; width:100%; }
+
+/* ══════════════════════════════════════
+   CONFIRME BANNER
+══════════════════════════════════════ */
+.confirme-section {
+  position:relative; z-index:1;
+  background: linear-gradient(160deg, #fdf4ff 0%, #fce7f3 50%, #eff6ff 100%);
+  padding:38px 24px 32px;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* Decorative circles */
+.confirme-section .deco-circle {
+  position:absolute; border-radius:50%; opacity:.12;
+}
+
+.confirme-eyebrow {
+  font-size:.72rem; letter-spacing:.2em;
+  text-transform:uppercase; color:#9ca3af;
+  font-weight:700; margin-bottom:10px;
+}
+.confirme-title {
+  font-family:'Great Vibes', cursive;
+  font-size:clamp(2.4rem, 9vw, 3.6rem);
+  color:var(--bolo-pink);
+  line-height:1.1; margin-bottom:12px;
+  text-shadow:2px 2px 0 rgba(244,114,182,.15);
+}
+.confirme-sub {
+  font-size:.88rem; color:#6b7280;
+  font-weight:600; line-height:1.65;
+  max-width:360px; margin:0 auto;
+}
+
+/* Bolo character dots row */
+.bolo-chars {
+  display:flex; justify-content:center;
+  gap:8px; margin-top:16px;
+}
+.bolo-char-dot {
+  width:22px; height:22px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.7rem; font-weight:900; color:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+  animation:blobBounce ease-in-out infinite;
+}
+@keyframes blobBounce {
+  0%,100% { transform:scale(1) translateY(0); }
+  50%     { transform:scale(1.15) translateY(-3px); }
+}
+
+/* ══════════════════════════════════════
+   WAVE DIVIDER 2
+══════════════════════════════════════ */
+.wave-divider2 {
+  position:relative; z-index:1;
+  line-height:0;
+  background: linear-gradient(160deg, #fdf4ff 0%, #fce7f3 50%, #eff6ff 100%);
+}
+.wave-divider2 svg { display:block; width:100%; }
+
+/* ══════════════════════════════════════
+   FORM
+══════════════════════════════════════ */
+.form-section {
+  position:relative; z-index:1;
+  background:#f8faff;
+  padding:28px 20px 20px;
+}
+.form-card {
+  max-width:520px; margin:0 auto;
+  background:var(--white); border-radius:26px;
+  padding:34px 26px 28px;
+  box-shadow:0 6px 36px rgba(30,58,138,.14);
+  border-top:5px solid var(--bolo-pink);
+  animation:slideUp .6s cubic-bezier(.22,1,.36,1) both;
+}
+
+.flabel {
+  display:flex; align-items:center; gap:8px;
+  font-weight:800; font-size:.82rem;
+  letter-spacing:.08em; text-transform:uppercase;
+  color:var(--bolo-blue); margin-bottom:10px;
+}
+.ico {
+  width:28px; height:28px;
+  background:#eff6ff; border-radius:8px;
+  display:grid; place-items:center; font-size:.95rem;
+}
+.fsection { margin-bottom:22px; }
+
+select {
+  width:100%; padding:12px 16px;
+  border:2px solid #bfdbfe; border-radius:var(--radius);
+  background:#eff6ff; color:var(--bolo-blue);
+  font-family:'Nunito',sans-serif; font-size:.95rem; font-weight:700;
+  cursor:pointer; appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 14px center;
+  transition:border-color .2s,box-shadow .2s;
+}
+select:focus {
+  outline:none; border-color:var(--bolo-blue2);
+  box-shadow:0 0 0 3px rgba(37,99,235,.18); background:#fff;
+}
+
+.names-grid { display:grid; gap:10px; margin-top:12px; }
+.name-row {
+  display:flex; align-items:center; gap:10px;
+  animation:fadeIn .3s ease both;
+}
+@keyframes fadeIn {
+  from { opacity:0; transform:translateX(-8px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+.nbadge {
+  width:30px; height:30px; border-radius:50%;
+  background:linear-gradient(135deg, var(--bolo-pink), #ec4899);
+  color:#fff; font-size:.75rem; font-weight:900;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; box-shadow:0 2px 8px rgba(244,114,182,.4);
+}
+input[type="text"] {
+  flex:1; padding:11px 14px;
+  border:2px solid #bfdbfe; border-radius:var(--radius);
+  background:#eff6ff; color:var(--bolo-blue);
+  font-family:'Nunito',sans-serif; font-size:.93rem; font-weight:700;
+  transition:border-color .2s,box-shadow .2s;
+}
+input[type="text"]::placeholder { color:#93c5fd; }
+input[type="text"]:focus {
+  outline:none; border-color:var(--bolo-blue2);
+  box-shadow:0 0 0 3px rgba(37,99,235,.18); background:#fff;
+}
+textarea {
+  width:100%; padding:12px 14px;
+  border:2px solid #bfdbfe; border-radius:var(--radius);
+  background:#eff6ff; color:var(--bolo-blue);
+  font-family:'Nunito',sans-serif; font-size:.93rem; font-weight:700;
+  resize:vertical; min-height:80px;
+  transition:border-color .2s,box-shadow .2s;
+}
+textarea::placeholder { color:#93c5fd; }
+textarea:focus {
+  outline:none; border-color:var(--bolo-blue2);
+  box-shadow:0 0 0 3px rgba(37,99,235,.18); background:#fff;
+}
+
+.btn {
+  width:100%; padding:16px; margin-top:8px;
+  border:none; border-radius:var(--radius);
+  background:linear-gradient(135deg, var(--bolo-pink), #ec4899);
+  color:#fff; font-family:'Nunito',sans-serif;
+  font-size:1.05rem; font-weight:900; letter-spacing:.05em;
+  cursor:pointer; position:relative; overflow:hidden;
+  transition:transform .15s,box-shadow .15s;
+  box-shadow:0 5px 22px rgba(236,72,153,.45);
+}
+.btn:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 8px 28px rgba(236,72,153,.55); }
+.btn:active:not(:disabled) { transform:translateY(0); }
+.btn:disabled { opacity:.65; cursor:not-allowed; }
+.ripple {
+  position:absolute; border-radius:50%;
+  background:rgba(255,255,255,.3); transform:scale(0);
+  animation:ripple .5s linear; pointer-events:none;
+}
+@keyframes ripple { to { transform:scale(4); opacity:0; } }
+
+.msg { text-align:center; margin-top:12px; font-size:.88rem; min-height:18px; font-weight:700; color:var(--bolo-blue); }
+.msg.error { color:#b91c1c; }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.footer {
+  position:relative; z-index:1;
+  background: linear-gradient(170deg, #1e3a8a 0%, #0f172a 100%);
+  padding:28px 20px 36px;
+  text-align:center;
+}
+.footer-heart {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:.9rem; color:rgba(255,255,255,.75); font-weight:700;
+  margin-bottom:8px;
+}
+.heart-icon {
+  color:var(--bolo-pink); font-size:1.1rem;
+  animation:heartbeat 1.4s ease-in-out infinite;
+}
+@keyframes heartbeat {
+  0%,100% { transform:scale(1); }
+  14%     { transform:scale(1.3); }
+  28%     { transform:scale(1); }
+  42%     { transform:scale(1.18); }
+  70%     { transform:scale(1); }
+}
+.footer-contact {
+  font-size:.82rem; color:rgba(255,255,255,.5); font-weight:600;
+}
+.footer-contact a {
+  color:var(--bolo-yellow); text-decoration:none; font-weight:800;
+}
+.footer-dots {
+  display:flex; justify-content:center; gap:6px; margin-top:16px;
+}
+.footer-dot {
+  width:10px; height:10px; border-radius:50%;
+  animation:blobBounce ease-in-out infinite;
+}
+
+@media(max-width:500px){
+  .form-card{ padding:26px 14px 22px; }
+  .invite{ padding:24px 14px 0; }
+}
+
+/* Pattern background */
+.bg-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('img/img_fundo.png');
+  background-repeat: repeat;
+  background-size: 280px 280px;
+  opacity: 0.95;
+  z-index: 0;
+  pointer-events: none;
+}
+.bg-wrap::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0.55);
+}
+</style>
+</head>
+<body>
+
+<!-- ══ ANIMATED BG ══ -->
+<div class="bg-wrap" id="bgWrap"></div>
+
+<!-- ══ INVITE TOP ══ -->
+<div class="invite">
+ <div class="invite-card">
+  
+
+  <p class="eyebrow">✨ Você está convidado para o ✨</p>
+
+  <h1 class="invite-title">
+    <span class="word-aniversario">Aniversário</span>
+    <span class="word-da"> da </span>
+    <span class="word-sofia">Sofia</span>
+  </h1>
+
+  <div class="age-pill">🎂 1 Aninho 🎂</div>
+  <div class="photo-wrap">
+  <button class="photo-btn left" onclick="mudarFoto(-1)">
+    &lt;
+  </button>
+  <div class="photo-frame">
+      <img src="img/sofia0.jpeg"  alt="Sofia maternidade">
+      <img src="img/sofia1.jpeg"  alt="1º mêsversário da Sofia">
+      <img src="img/sofia2.jpeg"  alt="2º mêsversário da Sofia">
+      <img src="img/sofia3.jpeg"  alt="3º mêsversário da Sofia">
+      <img src="img/sofia4.jpeg"  alt="4º mêsversário da Sofia">
+      <img src="img/sofia5.jpeg"  alt="5º mêsversário da Sofia">
+      <img src="img/sofia6.jpeg"  alt="6º mêsversário da Sofia">
+      <img src="img/sofia7.jpeg"  alt="7º mêsversário da Sofia">
+      <img src="img/sofia8.jpeg"  alt="8º mêsversário da Sofia">
+      <img src="img/sofia9.jpeg"  alt="9º mêsversário da Sofia">
+      <img src="img/sofia10.jpeg" alt="10º mêsversário da Sofia">
+      <img src="img/sofia11.jpeg" alt="11º mêsversário da Sofia formada">
+    </div>
+  <button class="photo-btn right" onclick="mudarFoto(1)">
+    &gt;
+  </button>
+</div>
+<div class="photo-description" id="photoDescription"></div>
+
+  <div class="info-row">
+    <div class="info-card">
+      <div class="ic-label">Data</div>
+      <div class="ic-value">27 de Junho, 2026</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Horário</div>
+      <div class="ic-value">13h às 18h</div>
+    </div>
+    <div class="info-card full-width">
+      <div class="ic-label">Local</div>
+      <div class="ic-value">Rua Morro das Mangueiras Nº 257</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- wave down -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C200,90 400,0 600,50 C800,100 1000,10 1200,50 L1200,80 L0,80 Z"
+          fill="url(#waveGrad1)"/>
+    <defs>
+      <linearGradient id="waveGrad1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="#fdf4ff"/>
+        <stop offset="50%"  stop-color="#fce7f3"/>
+        <stop offset="100%" stop-color="#eff6ff"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+<!-- ══ CONFIRME BANNER ══ -->
+<div class="confirme-section">
+  <!-- deco circles -->
+  <div class="deco-circle" style="width:160px;height:160px;background:#f59e0b;top:-40px;left:-40px;"></div>
+  <div class="deco-circle" style="width:120px;height:120px;background:#8b5cf6;bottom:-30px;right:-20px;"></div>
+  <div class="deco-circle" style="width:80px;height:80px;background:#f472b6;top:20px;right:30px;"></div>
+
+  <p class="confirme-eyebrow">Será um prazer ter você conosco</p>
+  <h2 class="confirme-title">Confirme sua Presença</h2>
+  <p class="confirme-sub">Preencha o formulário abaixo para confirmar sua presença e de sua família na festa da Sofia</p>
+
+  <div class="bolo-chars">
+    <div class="bolo-char-dot" style="background:#f59e0b;animation-delay:0s">🦁</div>
+    <div class="bolo-char-dot" style="background:#8b5cf6;animation-delay:.15s">🐙</div>
+    <div class="bolo-char-dot" style="background:#38bdf8;animation-delay:.3s">🐱</div>
+    <div class="bolo-char-dot" style="background:#d1d5db;animation-delay:.45s">🐰</div>
+    <div class="bolo-char-dot" style="background:#92400e;animation-delay:.6s">🦉</div>
+  </div>
+</div>
+
+<!-- wave down 2 -->
+<div class="wave-divider2">
+  <svg viewBox="0 0 1200 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C300,70 600,0 900,45 C1050,65 1150,20 1200,35 L1200,70 L0,70 Z"
+          fill="#f8faff"/>
+  </svg>
+</div>
+
+<!-- ══ FORM ══ -->
+<div class="form-section">
+  <div class="form-card">
+
+    <div class="fsection">
+      <div class="flabel"><span class="ico">📱</span>WhatsApp para contato</div>
+      <input type="tel" id="telefone" placeholder="(11) 99999-9999" style="width:100%">
+    </div>
+
+    <div class="fsection">
+      <div class="flabel"><span class="ico">👨‍👩‍👧</span>Quantidade de Adultos</div>
+      <select id="adultos" onchange="criarAdultos()">
+        <option value="">Selecione...</option>
+        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+        <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+      </select>
+      <div class="names-grid" id="nomesAdultos"></div>
+    </div>
+
+    <div class="fsection">
+      <div class="flabel"><span class="ico">🧒</span>Quantidade de Crianças</div>
+      <select id="criancas" onchange="criarCriancas()">
+        <option value="">Selecione...</option>
+        <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+        <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+      </select>
+      <div class="names-grid" id="nomesCriancas"></div>
+    </div>
+
+    <div class="fsection">
+      <div class="flabel"><span class="ico">📝</span>Observações</div>
+      <textarea id="obs" placeholder="Alguma observação"></textarea>
+    </div>
+
+    <button class="btn" id="btnConfirmar" onclick="enviar(this,event)">
+      🎉 Confirmar Presença
+    </button>
+    <p class="msg" id="msg"></p>
+
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <div class="footer-heart">
+    Feito com <span class="heart-icon">♥</span> para a Sofia
+  </div>
+  <p class="footer-contact">
+    Em caso de dúvidas, entre em contato:
+    <a href="https://api.whatsapp.com/send?phone=5511948627091&text=Ol%C3%A1%21+%F0%9F%98%8A%0AEntrei+em+contato+atrav%C3%A9s+do+convite+do+anivers%C3%A1rio+da+Sofia.">(11) 94862-7091</a>
+  </p>
+  <div class="footer-dots">
+    <div class="footer-dot" style="background:#f59e0b;animation-delay:0s"></div>
+    <div class="footer-dot" style="background:#f472b6;animation-delay:.2s"></div>
+    <div class="footer-dot" style="background:#8b5cf6;animation-delay:.4s"></div>
+    <div class="footer-dot" style="background:#38bdf8;animation-delay:.6s"></div>
+    <div class="footer-dot" style="background:#34d399;animation-delay:.8s"></div>
+  </div>
+</div>
+
+<script>
+// Phone mask
+document.addEventListener('input', function(e){
+  if(e.target.id==='telefone'){
+    let v=e.target.value.replace(/\D/g,'');
+    if(v.length>11) v=v.slice(0,11);
+    if(v.length>6) v=`(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+    else if(v.length>2) v=`(${v.slice(0,2)}) ${v.slice(2)}`;
+    else if(v.length>0) v=`(${v}`;
+    e.target.value=v;
+  }
+});
+
+/* ── Animated BG: stars, notes, clouds, confetti ── */
+(function(){
+  const wrap = document.getElementById('bgWrap');
+  const W = window.innerWidth || 400;
+
+  // Stars
+  for(let i=0;i<55;i++){
+    const s=document.createElement('div'); s.className='star';
+    const sz=1.5+Math.random()*3.5;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${1.5+Math.random()*3}s;animation-delay:${-Math.random()*4}s;`;
+    wrap.appendChild(s);
+  }
+
+  // Music notes
+  const noteChars = ['♩','♪','♫','♬','🎵','🎶'];
+  const noteColors = ['#fde047','#f472b6','#38bdf8','#a78bfa','#34d399','#fb923c'];
+  for(let i=0;i<14;i++){
+    const n=document.createElement('div'); n.className='note';
+    n.textContent=noteChars[Math.floor(Math.random()*noteChars.length)];
+    n.style.cssText=`left:${Math.random()*95}%;bottom:0;color:${noteColors[Math.floor(Math.random()*noteColors.length)]};animation-duration:${8+Math.random()*10}s;animation-delay:${-Math.random()*15}s;font-size:${.9+Math.random()*.9}rem;`;
+    wrap.appendChild(n);
+  }
+
+  // Clouds
+  for(let i=0;i<5;i++){
+    const c=document.createElement('div'); c.className='cloud';
+    const h=20+Math.random()*30; const w=h*2.5;
+    c.style.cssText=`width:${w}px;height:${h}px;top:${10+Math.random()*60}%;animation-duration:${28+Math.random()*20}s;animation-delay:${-Math.random()*30}s;`;
+    c.style.setProperty('--w',w+'px'); c.style.setProperty('--h',h+'px');
+    c.style.borderRadius=`${h/2}px ${h/2}px ${h*.8}px ${h*.8}px / ${h/2}px ${h/2}px ${h*.6}px ${h*.6}px`;
+    wrap.appendChild(c);
+  }
+
+  // Confetti
+  const confColors=['#f59e0b','#f472b6','#8b5cf6','#38bdf8','#34d399','#f87171','#fde047'];
+  for(let i=0;i<30;i++){
+    const cf=document.createElement('div'); cf.className='conf';
+    cf.style.cssText=`left:${Math.random()*100}%;background:${confColors[Math.floor(Math.random()*confColors.length)]};animation-duration:${5+Math.random()*8}s;animation-delay:${-Math.random()*12}s;transform:rotate(${Math.random()*360}deg);border-radius:${Math.random()>0.5?'50%':'2px'};width:${5+Math.random()*7}px;height:${5+Math.random()*7}px;`;
+    wrap.appendChild(cf);
+  }
+})();
+
+/* ── Form ── */
+function criarAdultos(){
+  const qtd=+document.getElementById('adultos').value||0;
+  let h='';
+  for(let i=1;i<=qtd;i++) h+=`<div class="name-row" style="animation-delay:${(i-1)*.05}s"><div class="nbadge">${i}</div><input type="text" class="adulto" placeholder="Nome do Adulto ${i}"></div>`;
+  document.getElementById('nomesAdultos').innerHTML=h;
+}
+
+function criarCriancas(){
+  const qtd=+document.getElementById('criancas').value||0;
+  let h='';
+  for(let i=1;i<=qtd;i++) h+=`<div class="name-row" style="animation-delay:${(i-1)*.05}s"><div class="nbadge">${i}</div><input type="text" class="crianca" placeholder="Nome da Criança ${i}"></div>`;
+  document.getElementById('nomesCriancas').innerHTML=h;
+}
+
+function addRipple(btn,e){
+  const r=document.createElement('span'); r.className='ripple';
+  const rect=btn.getBoundingClientRect();
+  const size=Math.max(rect.width,rect.height)*2;
+  r.style.cssText=`width:${size}px;height:${size}px;top:${e.clientY-rect.top-size/2}px;left:${e.clientX-rect.left-size/2}px`;
+  btn.appendChild(r); r.addEventListener('animationend',()=>r.remove());
+}
+
+async function enviar(btn,e){
+  addRipple(btn,e);
+  const msg=document.getElementById('msg');
+  msg.className='msg'; msg.textContent='';
+
+  // Validação
+  const qtdAdultos = +document.getElementById('adultos').value||0;
+  if(!document.getElementById('adultos').value){
+    msg.className='msg error'; msg.textContent='❌ Selecione a quantidade de adultos.';
+    return;
+  }
+  const adultoInputs = Array.from(document.querySelectorAll('.adulto'));
+  const algumVazio = adultoInputs.some(x=>!x.value.trim());
+  if(algumVazio){
+    msg.className='msg error'; msg.textContent='❌ Preencha o nome de todos os adultos.';
+    return;
+  }
+  const telefone = document.getElementById('telefone').value.trim();
+  if(!telefone){
+    msg.className='msg error'; msg.textContent='❌ Informe um WhatsApp para contato.';
+    return;
+  }
+
+  btn.disabled=true; btn.textContent='⏳ Enviando...';
+  try{
+    const adultos=adultoInputs.map(x=>x.value.trim());
+    const criancas=Array.from(document.querySelectorAll('.crianca')).map(x=>x.value.trim());
+    const dados={
+      quantidadeAdultos:document.getElementById('adultos').value,
+      nomesAdultos:adultos.join(', '),
+      quantidadeCriancas:document.getElementById('criancas').value,
+      nomesCriancas:criancas.join(', '),
+      telefone:telefone,
+      observacoes:document.getElementById('obs').value
+    };
+    await fetch('https://script.google.com/macros/s/AKfycbwOcuielIP6rP6UVyzbYH6NJ09HtCColep_XemQHos78slda0a8Ku-nnp_HPMRQV1MRBw/exec',
+      {method:'POST',body:JSON.stringify(dados)});
+    window.location.href='sucesso.html';
+  }catch(err){
+    msg.className='msg error'; msg.textContent='❌ Erro ao enviar. Tente novamente.';
+    btn.disabled=false; btn.textContent='🎉 Confirmar Presença';
+    console.error(err);
+  }
+}
+
+const photoImages = document.querySelectorAll('.photo-frame img');
+let currentPhoto = 0;
+let photoInterval = null;
+
+function showPhoto(index) {
+  photoImages.forEach((img, idx) => {
+    img.classList.toggle('active', idx === index);
+  });
+  const descEl = document.getElementById('photoDescription');
+  if (descEl && photoImages[index]) {
+    descEl.textContent = photoImages[index].getAttribute('alt') || '';
+  }
+}
+
+function mudarFoto(direction) {
+  if (!photoImages.length) return;
+  currentPhoto = (currentPhoto + direction + photoImages.length) % photoImages.length;
+  showPhoto(currentPhoto);
+  resetPhotoInterval();
+}
+
+function resetPhotoInterval() {
+  clearInterval(photoInterval);
+  photoInterval = setInterval(() => mudarFoto(1), 3000);
+}
+
+showPhoto(currentPhoto);
+resetPhotoInterval();
+</script>
+</body>
+</html>
